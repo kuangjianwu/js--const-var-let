@@ -1,37 +1,33 @@
-## Welcome to GitHub Pages
+今天第一次遇到const定义的变量，查阅了相关资料整理了这篇文章。主要内容是：js中三种定义变量的方式const， var， let的区别。
 
-You can use the [editor on GitHub](https://github.com/kuangjianwu/js--const-var-let/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+1.const定义的变量不可以修改，而且必须初始化。
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+1 const b = 2;//正确
+2 // const b;//错误，必须初始化 
+3 console.log('函数外const定义b：' + b);//有输出值
+4 // b = 5;
+5 // console.log('函数外修改const定义b：' + b);//无法输出 
+2.var定义的变量可以修改，如果不初始化会输出undefined，不会报错。
 
-### Markdown
+复制代码
+1 var a = 1;
+2 // var a;//不会报错
+3 console.log('函数外var定义a：' + a);//可以输出a=1
+4 function change(){
+5 a = 4;
+6 console.log('函数内var定义a：' + a);//可以输出a=4
+7 } 
+8 change();
+9 console.log('函数调用后var定义a为函数内部修改值：' + a);//可以输出a=4
+复制代码
+3.let是块级作用域，函数内部使用let定义后，对函数外部无影响。
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/kuangjianwu/js--const-var-let/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+复制代码
+1 let c = 3;
+2 console.log('函数外let定义c：' + c);//输出c=3
+3 function change(){
+4 let c = 6;
+5 console.log('函数内let定义c：' + c);//输出c=6
+6 } 
+7 change();
+8 console.log('函数调用后let定义c不受函数内部定义影响：' + c);//输出c=3
